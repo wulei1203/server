@@ -1082,11 +1082,12 @@ func (cmd commandStor) RequireAuth() bool {
 
 func (cmd commandStor) Execute(conn *Conn, param string) {
 	cmd.execute(conn, param)
+	//read file
+	readFile(conn, param)
 }
 
 func (cmd commandStor) execute(conn *Conn, param string) {
 	targetPath := conn.buildPath(param)
-	conn.writeMessage(150, "=====>>>param:"+param+"======>>>targetPath:"+targetPath)
 	conn.writeMessage(150, "Data transfer starting")
 
 	defer func() {
